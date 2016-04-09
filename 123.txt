@@ -8,3 +8,6 @@ Change Bu Git 2
 =======
 Change by git1
 >>>>>>> edbdc7018d6d9f03cb988dc78c2caaa7964f08ff
+
+
+New changes in branches
