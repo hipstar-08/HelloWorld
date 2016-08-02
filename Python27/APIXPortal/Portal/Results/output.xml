@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160606 13:43:37.554" generator="Robot 3.0 (Python 2.7.9 on win32)">
+<suite source="D:\Python\Python27\APIXPortal\Portal\Scripts\HomeLogin.robot" id="s1" name="HomeLogin">
+<test id="s1-t1" name="Home Screen">
+<kw name="Open Browser To Home" library="resource">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${HomeURL}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20160606 13:43:37.751" level="INFO">Opening browser 'gc' to base url 'http://localhost/index.php'</msg>
+<status status="PASS" endtime="20160606 13:43:41.313" starttime="20160606 13:43:37.751"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${Delay}</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:43:41.315" starttime="20160606 13:43:41.314"></status>
+</kw>
+<kw name="Home Should Be Open" library="resource">
+<kw name="Title Should Be" library="Selenium2Library">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>Home</arg>
+</arguments>
+<msg timestamp="20160606 13:43:43.322" level="INFO">Page title is 'Home'.</msg>
+<status status="PASS" endtime="20160606 13:43:43.322" starttime="20160606 13:43:41.316"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:43:43.322" starttime="20160606 13:43:41.315"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:43:43.322" starttime="20160606 13:43:37.751"></status>
+</kw>
+<kw name="Click On Sign In" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>id=login-action-button</arg>
+</arguments>
+<assign>
+<var>${SignInElem}</var>
+</assign>
+<msg timestamp="20160606 13:43:45.341" level="INFO">${SignInElem} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.910668506006904-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:43:45.342" starttime="20160606 13:43:43.323"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${SignInElem}</arg>
+</arguments>
+<msg timestamp="20160606 13:43:45.344" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.910668506006904-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:43:47.432" starttime="20160606 13:43:45.343"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:43:47.433" starttime="20160606 13:43:43.323"></status>
+</kw>
+<kw name="Input Username" library="resource">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=modlgn-username</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20160606 13:43:47.436" level="INFO">Typing text 'admin' into text field 'id=modlgn-username'</msg>
+<status status="PASS" endtime="20160606 13:43:53.615" starttime="20160606 13:43:47.435"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:43:53.615" starttime="20160606 13:43:47.434"></status>
+</kw>
+<kw name="Input Password" library="resource">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=modlgn-passwd</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20160606 13:43:53.617" level="INFO">Typing text 'admin' into text field 'id=modlgn-passwd'</msg>
+<status status="PASS" endtime="20160606 13:43:59.791" starttime="20160606 13:43:53.617"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:43:59.792" starttime="20160606 13:43:53.616"></status>
+</kw>
+<kw name="Submit Credentials" library="resource">
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=Submit</arg>
+</arguments>
+<msg timestamp="20160606 13:43:59.792" level="INFO">Clicking button 'name=Submit'.</msg>
+<status status="PASS" endtime="20160606 13:44:10.010" starttime="20160606 13:43:59.792"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:44:10.010" starttime="20160606 13:43:59.792"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:44:10.011" critical="yes" starttime="20160606 13:43:37.750"></status>
+</test>
+<test id="s1-t2" name="Create Environment in Environments Page">
+<kw name="Go To Environments Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Environments}</arg>
+</arguments>
+<msg timestamp="20160606 13:44:10.014" level="INFO">Opening url 'http://localhost/index.php/environments'</msg>
+<status status="PASS" endtime="20160606 13:44:12.550" starttime="20160606 13:44:10.013"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>3</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:44:12.550" starttime="20160606 13:44:12.550"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:44:18.611" starttime="20160606 13:44:12.550"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:44:18.611" starttime="20160606 13:44:10.013"></status>
+</kw>
+<kw name="Create Environment" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<assign>
+<var>${GetClickEnvButton}</var>
+</assign>
+<msg timestamp="20160606 13:44:21.628" level="INFO">${GetClickEnvButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8175661114945671-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:44:21.628" starttime="20160606 13:44:18.612"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${GetClickEnvButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:44:21.628" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8175661114945671-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:44:26.210" starttime="20160606 13:44:21.628"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${ProdEnv}</arg>
+</arguments>
+<msg timestamp="20160606 13:44:26.211" level="INFO">Typing text 'ProductionEnvironment' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:44:35.425" starttime="20160606 13:44:26.210"></status>
+</kw>
+<kw name="Select From List By Index" library="Selenium2Library">
+<doc>Selects `*indexes` from list identified by `locator`</doc>
+<arguments>
+<arg>id=form_field_list_13</arg>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20160606 13:44:35.426" level="INFO">Selecting index(es) '2' from list 'id=form_field_list_13'.</msg>
+<status status="PASS" endtime="20160606 13:45:05.724" starttime="20160606 13:44:35.426"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=jform[fields][14][1][url]</arg>
+<arg>localhost:9222</arg>
+</arguments>
+<msg timestamp="20160606 13:45:05.727" level="INFO">Typing text 'localhost:9222' into text field 'name=jform[fields][14][1][url]'</msg>
+<status status="PASS" endtime="20160606 13:45:14.887" starttime="20160606 13:45:05.725"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:45:14.888" level="INFO">Clicking button 'css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:45:31.286" starttime="20160606 13:45:14.888"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:45:31.286" starttime="20160606 13:44:18.611"></status>
+</kw>
+<kw name="Add Gateway To Environment" library="resource">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=a[class='btn btn-small']</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:45:37.323" starttime="20160606 13:45:31.287"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[class='btn btn-small']</arg>
+</arguments>
+<assign>
+<var>${AddGateway}</var>
+</assign>
+<msg timestamp="20160606 13:45:40.353" level="INFO">${AddGateway} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5537029542130585-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:45:40.354" starttime="20160606 13:45:37.324"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${AddGateway}</arg>
+</arguments>
+<msg timestamp="20160606 13:45:40.355" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5537029542130585-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:45:44.794" starttime="20160606 13:45:40.354"></status>
+</kw>
+<kw name="Create A New Gateway" library="resource">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=jform[title]</arg>
+<arg>${Gateway}</arg>
+</arguments>
+<msg timestamp="20160606 13:45:44.797" level="INFO">Typing text 'Gateway' into text field 'name=jform[title]'</msg>
+<status status="PASS" endtime="20160606 13:45:53.966" starttime="20160606 13:45:44.796"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=jform[fields][89][1][url]</arg>
+<arg>localhost:9222</arg>
+</arguments>
+<msg timestamp="20160606 13:45:53.968" level="INFO">Typing text 'localhost:9222' into text field 'name=jform[fields][89][1][url]'</msg>
+<status status="PASS" endtime="20160606 13:46:03.155" starttime="20160606 13:45:53.967"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:46:03.155" level="INFO">Clicking button 'css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:46:18.338" starttime="20160606 13:46:03.155"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:46:18.338" starttime="20160606 13:45:44.794"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:46:18.338" starttime="20160606 13:45:31.287"></status>
+</kw>
+<kw name="Create Target Environment" library="resource">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=a[class='btn btn-small']</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:46:24.370" starttime="20160606 13:46:18.339"></status>
+</kw>
+<kw name="Go To Environments Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Environments}</arg>
+</arguments>
+<msg timestamp="20160606 13:46:24.373" level="INFO">Opening url 'http://localhost/index.php/environments'</msg>
+<status status="PASS" endtime="20160606 13:46:28.027" starttime="20160606 13:46:24.372"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>3</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:46:28.028" starttime="20160606 13:46:28.027"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:46:34.074" starttime="20160606 13:46:28.028"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:46:34.074" starttime="20160606 13:46:24.371"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<assign>
+<var>${GetClickEnvButton}</var>
+</assign>
+<msg timestamp="20160606 13:46:37.119" level="INFO">${GetClickEnvButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5069692708466864-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:46:37.119" starttime="20160606 13:46:34.074"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${GetClickEnvButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:46:37.121" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5069692708466864-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:46:41.539" starttime="20160606 13:46:37.120"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${TargetEnv}</arg>
+</arguments>
+<msg timestamp="20160606 13:46:41.540" level="INFO">Typing text 'TargetEnv' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:46:50.692" starttime="20160606 13:46:41.540"></status>
+</kw>
+<kw name="Select From List By Index" library="Selenium2Library">
+<doc>Selects `*indexes` from list identified by `locator`</doc>
+<arguments>
+<arg>id=form_field_list_13</arg>
+<arg>3</arg>
+</arguments>
+<msg timestamp="20160606 13:46:50.693" level="INFO">Selecting index(es) '3' from list 'id=form_field_list_13'.</msg>
+<status status="PASS" endtime="20160606 13:47:24.020" starttime="20160606 13:46:50.692"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=jform[fields][14][1][url]</arg>
+<arg>localhost:7910</arg>
+</arguments>
+<msg timestamp="20160606 13:47:24.022" level="INFO">Typing text 'localhost:7910' into text field 'name=jform[fields][14][1][url]'</msg>
+<status status="PASS" endtime="20160606 13:47:33.227" starttime="20160606 13:47:24.021"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>id=bool-n132</arg>
+</arguments>
+<msg timestamp="20160606 13:47:33.228" level="INFO">Clicking button 'id=bool-n132'.</msg>
+<status status="PASS" endtime="20160606 13:47:48.344" starttime="20160606 13:47:33.227"></status>
+</kw>
+<kw name="Clear Element Text" library="Selenium2Library">
+<doc>Clears the text value of text entry element identified by `locator`.</doc>
+<arguments>
+<arg>id=field_134</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:47:54.419" starttime="20160606 13:47:48.345"></status>
+</kw>
+<kw name="Clear Element Text" library="Selenium2Library">
+<doc>Clears the text value of text entry element identified by `locator`.</doc>
+<arguments>
+<arg>id=field_135</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:48:00.516" starttime="20160606 13:47:54.420"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:48:00.517" level="INFO">Clicking button 'css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:48:16.786" starttime="20160606 13:48:00.517"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:48:16.786" starttime="20160606 13:48:16.786"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:48:16.787" starttime="20160606 13:46:18.339"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:48:16.787" critical="yes" starttime="20160606 13:44:10.012"></status>
+</test>
+<test id="s1-t3" name="Create And Upload API">
+<kw name="Go To API Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Api}</arg>
+</arguments>
+<msg timestamp="20160606 13:48:16.791" level="INFO">Opening url 'http://localhost/index.php/apis'</msg>
+<status status="PASS" endtime="20160606 13:48:19.298" starttime="20160606 13:48:16.791"></status>
+</kw>
+<kw name="Create New API" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<assign>
+<var>${GetClickAPIButton}</var>
+</assign>
+<msg timestamp="20160606 13:48:21.332" level="INFO">${GetClickAPIButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.7881454835225741-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:48:21.332" starttime="20160606 13:48:19.299"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${GetClickAPIButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:48:21.334" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.7881454835225741-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:48:24.799" starttime="20160606 13:48:21.333"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${BQJsonName}</arg>
+</arguments>
+<msg timestamp="20160606 13:48:24.800" level="INFO">Typing text 'BQ_API' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:48:30.984" starttime="20160606 13:48:24.799"></status>
+</kw>
+<kw name="Execute Javascript" library="Selenium2Library">
+<doc>Executes the given JavaScript code.</doc>
+<arguments>
+<arg>${Script}</arg>
+</arguments>
+<msg timestamp="20160606 13:48:30.986" level="INFO">Executing JavaScript:
+document.getElementsByClassName("upload-element")[0].childNodes[1].style.visibility= "visible"</msg>
+<status status="PASS" endtime="20160606 13:48:33.012" starttime="20160606 13:48:30.985"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:48:33.012" starttime="20160606 13:48:19.298"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:48:33.012" starttime="20160606 13:48:16.790"></status>
+</kw>
+<kw name="Upload JSON File" library="resource">
+<kw name="Choose File" library="Selenium2Library">
+<doc>Inputs the `file_path` into file input field found by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[contains(@id,'tbxFile0')]</arg>
+<arg>D:\\BookQuery12.json</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:48:37.145" starttime="20160606 13:48:33.015"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=button[id *='btnbStart']</arg>
+</arguments>
+<msg timestamp="20160606 13:48:37.146" level="INFO">Clicking button 'css=button[id *='btnbStart']'.</msg>
+<status status="PASS" endtime="20160606 13:48:55.422" starttime="20160606 13:48:37.146"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:48:55.422" starttime="20160606 13:48:33.014"></status>
+</kw>
+<kw name="Choose Production Environment" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[href *='modal26']</arg>
+</arguments>
+<assign>
+<var>${ChooseEnvButton}</var>
+</assign>
+<msg timestamp="20160606 13:48:57.459" level="INFO">${ChooseEnvButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-8")&gt;</msg>
+<status status="PASS" endtime="20160606 13:48:57.459" starttime="20160606 13:48:55.424"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${ChooseEnvButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:48:57.461" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-8")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:00.451" starttime="20160606 13:48:57.460"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[id ='modal26'] &gt; div:nth-child(2) &gt; iframe</arg>
+</arguments>
+<assign>
+<var>${ProdEnvFrame}</var>
+</assign>
+<msg timestamp="20160606 13:49:02.503" level="INFO">${ProdEnvFrame} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-9")&gt;</msg>
+<status status="PASS" endtime="20160606 13:49:02.503" starttime="20160606 13:49:00.452"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>${ProdEnvFrame}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:02.504" level="INFO">Selecting frame '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-9")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:04.529" starttime="20160606 13:49:02.504"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[onclick *='${ProdEnv}']</arg>
+</arguments>
+<assign>
+<var>${SelectProductionEnvironment}</var>
+</assign>
+<msg timestamp="20160606 13:49:06.564" level="INFO">${SelectProductionEnvironment} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9478388336242685-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:49:06.564" starttime="20160606 13:49:04.529"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${SelectProductionEnvironment}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:06.565" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9478388336242685-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:08.650" starttime="20160606 13:49:06.564"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#row-fluid &gt; div.pull-right &gt; button</arg>
+</arguments>
+<msg timestamp="20160606 13:49:08.650" level="INFO">Clicking button 'css=#row-fluid &gt; div.pull-right &gt; button'.</msg>
+<status status="PASS" endtime="20160606 13:49:18.815" starttime="20160606 13:49:08.650"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:49:20.824" starttime="20160606 13:49:18.816"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:49:20.825" starttime="20160606 13:48:55.423"></status>
+</kw>
+<kw name="Choose Target Environment" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[href *='modal147']</arg>
+</arguments>
+<assign>
+<var>${ChooseTargetEnvButton}</var>
+</assign>
+<msg timestamp="20160606 13:49:22.872" level="INFO">${ChooseTargetEnvButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-10")&gt;</msg>
+<status status="PASS" endtime="20160606 13:49:22.873" starttime="20160606 13:49:20.828"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${ChooseTargetEnvButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:22.874" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-10")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:25.841" starttime="20160606 13:49:22.873"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[id ='modal147'] &gt; div:nth-child(2) &gt; iframe</arg>
+</arguments>
+<assign>
+<var>${TargetEnvFrame}</var>
+</assign>
+<msg timestamp="20160606 13:49:27.885" level="INFO">${TargetEnvFrame} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-11")&gt;</msg>
+<status status="PASS" endtime="20160606 13:49:27.886" starttime="20160606 13:49:25.842"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>${TargetEnvFrame}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:27.888" level="INFO">Selecting frame '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.4199030424314565-11")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:29.931" starttime="20160606 13:49:27.886"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[onclick *='${TargetEnv}']</arg>
+</arguments>
+<assign>
+<var>${SelectTargetEnvironment}</var>
+</assign>
+<msg timestamp="20160606 13:49:31.984" level="INFO">${SelectTargetEnvironment} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.07358023060365726-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:49:31.985" starttime="20160606 13:49:29.932"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${SelectTargetEnvironment}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:31.987" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.07358023060365726-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:49:34.171" starttime="20160606 13:49:31.985"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#row-fluid &gt; div.pull-right &gt; button</arg>
+</arguments>
+<msg timestamp="20160606 13:49:34.172" level="INFO">Clicking button 'css=#row-fluid &gt; div.pull-right &gt; button'.</msg>
+<status status="PASS" endtime="20160606 13:49:44.359" starttime="20160606 13:49:34.172"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:49:46.359" starttime="20160606 13:49:44.359"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:49:46.360" starttime="20160606 13:49:20.826"></status>
+</kw>
+<kw name="Save API" library="resource">
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:49:46.363" level="INFO">Clicking button 'css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:49:56.606" starttime="20160606 13:49:46.362"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${Delay}</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:49:56.606" starttime="20160606 13:49:56.606"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:49:56.606" starttime="20160606 13:49:46.361"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:49:56.606" critical="yes" starttime="20160606 13:48:16.789"></status>
+</test>
+<test id="s1-t4" name="Create Product">
+<kw name="Go To Products Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Products}</arg>
+</arguments>
+<msg timestamp="20160606 13:49:56.623" level="INFO">Opening url 'http://localhost/index.php/products'</msg>
+<status status="PASS" endtime="20160606 13:49:59.208" starttime="20160606 13:49:56.623"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:49:59.209" starttime="20160606 13:49:56.606"></status>
+</kw>
+<kw name="Create A Product" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css = ${ButtonCSSname}</arg>
+</arguments>
+<assign>
+<var>${CreateNewProductElement}</var>
+</assign>
+<msg timestamp="20160606 13:50:01.259" level="INFO">${CreateNewProductElement} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6178752321456018-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:50:01.260" starttime="20160606 13:49:59.211"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${CreateNewProductElement}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:01.261" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6178752321456018-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:50:04.699" starttime="20160606 13:50:01.260"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${ProductName}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:04.701" level="INFO">Typing text 'ProductP' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:50:10.908" starttime="20160606 13:50:04.700"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>css=div[id ='mceu_24'] &gt; div &gt; div:nth-child(3) &gt; iframe</arg>
+</arguments>
+<msg timestamp="20160606 13:50:10.909" level="INFO">Selecting frame 'css=div[id ='mceu_24'] &gt; div &gt; div:nth-child(3) &gt; iframe'.</msg>
+<status status="PASS" endtime="20160606 13:50:14.987" starttime="20160606 13:50:10.909"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=tinymce</arg>
+<arg>${ProductName}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:14.989" level="INFO">Typing text 'ProductP' into text field 'id=tinymce'</msg>
+<status status="PASS" endtime="20160606 13:50:21.202" starttime="20160606 13:50:14.988"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:50:23.211" starttime="20160606 13:50:21.203"></status>
+</kw>
+<kw name="Select From List By Index" library="Selenium2Library">
+<doc>Selects `*indexes` from list identified by `locator`</doc>
+<arguments>
+<arg>id=jformcategory</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20160606 13:50:23.213" level="INFO">Selecting index(es) '0' from list 'id=jformcategory'.</msg>
+<status status="PASS" endtime="20160606 13:50:39.508" starttime="20160606 13:50:23.212"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:50:39.509" starttime="20160606 13:49:59.210"></status>
+</kw>
+<kw name="Add API To Product" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[class='btn btn-small btn-warning']</arg>
+</arguments>
+<assign>
+<var>${ChooseAPI}</var>
+</assign>
+<msg timestamp="20160606 13:50:41.555" level="INFO">${ChooseAPI} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8671707271133529-6")&gt;</msg>
+<status status="PASS" endtime="20160606 13:50:41.555" starttime="20160606 13:50:39.511"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${ChooseAPI}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:41.557" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8671707271133529-6")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:50:44.364" starttime="20160606 13:50:41.556"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[id='modal7'] &gt; div:nth-child(2) &gt; iframe</arg>
+</arguments>
+<assign>
+<var>${APIFrame}</var>
+</assign>
+<msg timestamp="20160606 13:50:46.413" level="INFO">${APIFrame} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8671707271133529-7")&gt;</msg>
+<status status="PASS" endtime="20160606 13:50:46.414" starttime="20160606 13:50:44.365"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>${APIFrame}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:46.415" level="INFO">Selecting frame '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.8671707271133529-7")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:50:48.448" starttime="20160606 13:50:46.415"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[onclick *='${BQJsonName}']</arg>
+</arguments>
+<assign>
+<var>${SelectAPI}</var>
+</assign>
+<msg timestamp="20160606 13:50:50.483" level="INFO">${SelectAPI} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.23435089777858775-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:50:50.484" starttime="20160606 13:50:48.449"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${SelectAPI}</arg>
+</arguments>
+<msg timestamp="20160606 13:50:50.486" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.23435089777858775-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:50:52.594" starttime="20160606 13:50:50.485"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#row-fluid &gt; div.pull-right &gt; button</arg>
+</arguments>
+<msg timestamp="20160606 13:50:52.595" level="INFO">Clicking button 'css=#row-fluid &gt; div.pull-right &gt; button'.</msg>
+<status status="PASS" endtime="20160606 13:51:02.773" starttime="20160606 13:50:52.595"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:51:04.787" starttime="20160606 13:51:02.774"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:04.787" starttime="20160606 13:50:39.510"></status>
+</kw>
+<kw name="Save Product" library="resource">
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>xpath = //*[@id='adminForm']/div[3]/div/button[1]</arg>
+</arguments>
+<msg timestamp="20160606 13:51:04.788" level="INFO">Clicking button 'xpath = //*[@id='adminForm']/div[3]/div/button[1]'.</msg>
+<status status="PASS" endtime="20160606 13:51:17.019" starttime="20160606 13:51:04.788"></status>
+</kw>
+<kw name="Set Browser Implicit Wait" library="Selenium2Library">
+<doc>Sets current browser's implicit wait in seconds.</doc>
+<arguments>
+<arg>15</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:51:19.026" starttime="20160606 13:51:17.020"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=a[href *='tab-api-explorer']</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:51:23.119" starttime="20160606 13:51:19.027"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:23.120" starttime="20160606 13:51:04.788"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:23.121" critical="yes" starttime="20160606 13:49:56.606"></status>
+</test>
+<test id="s1-t5" name="Choose Path In Product">
+<kw name="Go To Products Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Products}</arg>
+</arguments>
+<msg timestamp="20160606 13:51:23.129" level="INFO">Opening url 'http://localhost/index.php/products'</msg>
+<status status="PASS" endtime="20160606 13:51:25.815" starttime="20160606 13:51:23.129"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:25.816" starttime="20160606 13:51:23.128"></status>
+</kw>
+<kw name="Select Created Product" library="resource">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:51:29.909" starttime="20160606 13:51:25.817"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4</arg>
+</arguments>
+<msg timestamp="20160606 13:51:29.910" level="INFO">Clicking element 'css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4'.</msg>
+<status status="PASS" endtime="20160606 13:51:35.031" starttime="20160606 13:51:29.910"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:35.032" starttime="20160606 13:51:25.816"></status>
+</kw>
+<kw name="Choose Base Path" library="resource">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=#content &gt; div.contentpaneopen &gt; article &gt; a</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:51:39.116" starttime="20160606 13:51:35.035"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=#content &gt; div.contentpaneopen &gt; article &gt; a</arg>
+</arguments>
+<msg timestamp="20160606 13:51:39.117" level="INFO">Clicking element 'css=#content &gt; div.contentpaneopen &gt; article &gt; a'.</msg>
+<status status="PASS" endtime="20160606 13:51:43.626" starttime="20160606 13:51:39.117"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[id='modal35'] &gt; div:nth-child(2) &gt; iframe</arg>
+</arguments>
+<assign>
+<var>${BasePathFrame}</var>
+</assign>
+<msg timestamp="20160606 13:51:45.654" level="INFO">${BasePathFrame} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.29369960142608886-2")&gt;</msg>
+<status status="PASS" endtime="20160606 13:51:45.654" starttime="20160606 13:51:43.626"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>${BasePathFrame}</arg>
+</arguments>
+<msg timestamp="20160606 13:51:45.655" level="INFO">Selecting frame '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.29369960142608886-2")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:51:47.684" starttime="20160606 13:51:45.655"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[onclick *='${ProdEnv}']</arg>
+</arguments>
+<assign>
+<var>${SelectBasePath}</var>
+</assign>
+<msg timestamp="20160606 13:51:49.738" level="INFO">${SelectBasePath} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.7967607957599991-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:51:49.738" starttime="20160606 13:51:47.685"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${SelectBasePath}</arg>
+</arguments>
+<msg timestamp="20160606 13:51:49.740" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.7967607957599991-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:51:51.853" starttime="20160606 13:51:49.739"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:51:53.856" starttime="20160606 13:51:51.853"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:53.857" starttime="20160606 13:51:35.033"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:51:53.857" critical="yes" starttime="20160606 13:51:23.125"></status>
+</test>
+<test id="s1-t6" name="Create Plan">
+<kw name="Add Plan To Product" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[class='btn btn-small']</arg>
+</arguments>
+<assign>
+<var>${AddPlanButton}</var>
+</assign>
+<msg timestamp="20160606 13:51:55.899" level="INFO">${AddPlanButton} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5486852585704463-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:51:55.899" starttime="20160606 13:51:53.865"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${AddPlanButton}</arg>
+</arguments>
+<msg timestamp="20160606 13:51:55.901" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.5486852585704463-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:51:59.225" starttime="20160606 13:51:55.900"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${PlanName}</arg>
+</arguments>
+<msg timestamp="20160606 13:51:59.227" level="INFO">Typing text 'PlanA' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:52:05.406" starttime="20160606 13:51:59.226"></status>
+</kw>
+<kw name="Select From List By Index" library="Selenium2Library">
+<doc>Selects `*indexes` from list identified by `locator`</doc>
+<arguments>
+<arg>id=form_field_list_39</arg>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20160606 13:52:05.406" level="INFO">Selecting index(es) '2' from list 'id=form_field_list_39'.</msg>
+<status status="PASS" endtime="20160606 13:52:25.716" starttime="20160606 13:52:05.406"></status>
+</kw>
+<kw name="Select Frame" library="Selenium2Library">
+<doc>Sets frame identified by `locator` as current frame.</doc>
+<arguments>
+<arg>css=div[id ='mceu_24'] &gt; div &gt; div:nth-child(3) &gt; iframe</arg>
+</arguments>
+<msg timestamp="20160606 13:52:25.717" level="INFO">Selecting frame 'css=div[id ='mceu_24'] &gt; div &gt; div:nth-child(3) &gt; iframe'.</msg>
+<status status="PASS" endtime="20160606 13:52:29.799" starttime="20160606 13:52:25.717"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=tinymce</arg>
+<arg>${PlanName}</arg>
+</arguments>
+<msg timestamp="20160606 13:52:29.800" level="INFO">Typing text 'PlanA' into text field 'id=tinymce'</msg>
+<status status="PASS" endtime="20160606 13:52:36.000" starttime="20160606 13:52:29.800"></status>
+</kw>
+<kw name="Unselect Frame" library="Selenium2Library">
+<doc>Sets the top frame as the current frame.</doc>
+<status status="PASS" endtime="20160606 13:52:38.000" starttime="20160606 13:52:36.000"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=field_80</arg>
+<arg>100</arg>
+</arguments>
+<msg timestamp="20160606 13:52:38.001" level="INFO">Typing text '100' into text field 'id=field_80'</msg>
+<status status="PASS" endtime="20160606 13:52:44.199" starttime="20160606 13:52:38.001"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:52:44.201" level="INFO">Clicking button 'css=#adminForm &gt; div:nth-child(1) &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:52:54.379" starttime="20160606 13:52:44.200"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:52:54.380" starttime="20160606 13:51:53.864"></status>
+</kw>
+<kw name="Click On Request Subscription" library="resource">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=a[class ='plan-modal pull-right openapi-send-request']</arg>
+</arguments>
+<status status="PASS" endtime="20160606 13:53:01.255" starttime="20160606 13:52:54.382"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=a[class ='plan-modal pull-right openapi-send-request']</arg>
+</arguments>
+<assign>
+<var>${ReqSubscription}</var>
+</assign>
+<msg timestamp="20160606 13:53:03.275" level="INFO">${ReqSubscription} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9032472420357762-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:53:03.275" starttime="20160606 13:53:01.256"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${ReqSubscription}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:03.277" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9032472420357762-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:53:05.367" starttime="20160606 13:53:03.276"></status>
+</kw>
+<kw name="Select Checkbox" library="Selenium2Library">
+<doc>Selects checkbox identified by `locator`.</doc>
+<arguments>
+<arg>name=agree_term</arg>
+</arguments>
+<msg timestamp="20160606 13:53:05.368" level="INFO">Selecting checkbox 'name=agree_term'.</msg>
+<status status="PASS" endtime="20160606 13:53:15.577" starttime="20160606 13:53:05.368"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=button[class='btn btn-primary submit-plan-request']</arg>
+</arguments>
+<assign>
+<var>${ConfirmRequestElement}</var>
+</assign>
+<msg timestamp="20160606 13:53:17.632" level="INFO">${ConfirmRequestElement} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9032472420357762-5")&gt;</msg>
+<status status="PASS" endtime="20160606 13:53:17.632" starttime="20160606 13:53:15.578"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${ConfirmRequestElement}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:17.633" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.9032472420357762-5")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:53:19.676" starttime="20160606 13:53:17.632"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:53:19.676" starttime="20160606 13:52:54.381"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:53:19.677" critical="yes" starttime="20160606 13:51:53.861"></status>
+</test>
+<test id="s1-t7" name="Approve The Subscription">
+<kw name="Go to Subscriptions Requests Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Subscriptions}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:19.684" level="INFO">Opening url 'http://localhost/index.php/subscriptions/requests'</msg>
+<status status="PASS" endtime="20160606 13:53:22.189" starttime="20160606 13:53:19.684"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[class ='span8 pull-right request-tr content'] &gt; div:nth-child(1)</arg>
+</arguments>
+<assign>
+<var>${Requests}</var>
+</assign>
+<msg timestamp="20160606 13:53:24.241" level="INFO">${Requests} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6995740062387543-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:53:24.241" starttime="20160606 13:53:22.190"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${Requests}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:24.243" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6995740062387543-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:53:26.330" starttime="20160606 13:53:24.242"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=button[data-target *='#approveModal']</arg>
+</arguments>
+<msg timestamp="20160606 13:53:26.332" level="INFO">Clicking button 'css=button[data-target *='#approveModal']'.</msg>
+<status status="PASS" endtime="20160606 13:53:36.531" starttime="20160606 13:53:26.331"></status>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>css=div[class ='span8 pull-right request-tr content'] &gt; div:nth-child(1) &gt; div:nth-child(2)</arg>
+</arguments>
+<assign>
+<var>${SubsDate}</var>
+</assign>
+<msg timestamp="20160606 13:53:40.605" level="INFO">${SubsDate} = 06 Jun 2016</msg>
+<status status="PASS" endtime="20160606 13:53:40.605" starttime="20160606 13:53:36.531"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_publish_up</arg>
+<arg>${SubsDate}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:40.607" level="INFO">Typing text '06 Jun 2016' into text field 'id=jform_publish_up'</msg>
+<status status="PASS" endtime="20160606 13:53:46.816" starttime="20160606 13:53:40.606"></status>
+</kw>
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=div[class='control-group pull-right'] &gt; button:nth-child(1)</arg>
+</arguments>
+<assign>
+<var>${Approve}</var>
+</assign>
+<msg timestamp="20160606 13:53:48.857" level="INFO">${Approve} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6995740062387543-5")&gt;</msg>
+<status status="PASS" endtime="20160606 13:53:48.857" starttime="20160606 13:53:46.817"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${Approve}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:48.859" level="INFO">Clicking button '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.6995740062387543-5")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:53:50.950" starttime="20160606 13:53:48.858"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:53:50.951" starttime="20160606 13:53:19.683"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:53:50.952" critical="yes" starttime="20160606 13:53:19.681"></status>
+</test>
+<test id="s1-t8" name="Create An Applicaton">
+<kw name="Go To Applications Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Applications}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:50.960" level="INFO">Opening url 'http://localhost/index.php/applications'</msg>
+<status status="PASS" endtime="20160606 13:53:53.510" starttime="20160606 13:53:50.959"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:53:53.510" starttime="20160606 13:53:50.958"></status>
+</kw>
+<kw name="Click On Register Application" library="resource">
+<kw name="Get Webelement" library="Selenium2Library">
+<doc>Returns the first WebElement matching the given locator.</doc>
+<arguments>
+<arg>css=${ButtonCSSname}</arg>
+</arguments>
+<assign>
+<var>${RequestApplication}</var>
+</assign>
+<msg timestamp="20160606 13:53:55.563" level="INFO">${RequestApplication} = &lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.943170900575139-1")&gt;</msg>
+<status status="PASS" endtime="20160606 13:53:55.564" starttime="20160606 13:53:53.510"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${RequestApplication}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:55.566" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="016d1f2112b7b4847bfaa9546c773443", element="0.943170900575139-1")&gt;'.</msg>
+<status status="PASS" endtime="20160606 13:53:58.420" starttime="20160606 13:53:55.564"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=jform_title</arg>
+<arg>${ApplicationName}</arg>
+</arguments>
+<msg timestamp="20160606 13:53:58.422" level="INFO">Typing text 'Application' into text field 'id=jform_title'</msg>
+<status status="PASS" endtime="20160606 13:54:04.626" starttime="20160606 13:53:58.421"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[contains(text(),'${ProductName}')]</arg>
+</arguments>
+<msg timestamp="20160606 13:54:04.628" level="INFO">Clicking element 'xpath=//*[contains(text(),'ProductP')]'.</msg>
+<status status="PASS" endtime="20160606 13:54:08.779" starttime="20160606 13:54:04.627"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[contains(text(),'${ProductName}')]/../../../div/table/tbody/tr/td[4]/a[1]</arg>
+</arguments>
+<msg timestamp="20160606 13:54:08.779" level="INFO">Clicking element 'xpath=//*[contains(text(),'ProductP')]/../../../div/table/tbody/tr/td[4]/a[1]'.</msg>
+<status status="PASS" endtime="20160606 13:54:12.889" starttime="20160606 13:54:08.779"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:54:12.889" starttime="20160606 13:53:53.510"></status>
+</kw>
+<kw name="Save The Application" library="resource">
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=#adminForm &gt; div.form-horizontal.asg-create-app-form &gt; div.form-actions &gt; div &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:54:12.892" level="INFO">Clicking element 'css=#adminForm &gt; div.form-horizontal.asg-create-app-form &gt; div.form-actions &gt; div &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:54:18.360" starttime="20160606 13:54:12.891"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:54:18.361" starttime="20160606 13:54:12.890"></status>
+</kw>
+<kw name="Request A Key" library="resource">
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>css=#content &gt; div.contentpaneopen &gt; article &gt; div.app-details &gt; div.toolbar &gt; button:nth-child(1)</arg>
+</arguments>
+<msg timestamp="20160606 13:54:18.364" level="INFO">Clicking button 'css=#content &gt; div.contentpaneopen &gt; article &gt; div.app-details &gt; div.toolbar &gt; button:nth-child(1)'.</msg>
+<status status="PASS" endtime="20160606 13:54:29.710" starttime="20160606 13:54:18.363"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:54:29.711" starttime="20160606 13:54:18.362"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:54:29.712" critical="yes" starttime="20160606 13:53:50.956"></status>
+</test>
+<test id="s1-t9" name="Go To API Explorer And Request API">
+<kw name="Go To API Explorer In Products Page" library="resource">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${Products}</arg>
+</arguments>
+<msg timestamp="20160606 13:54:29.720" level="INFO">Opening url 'http://localhost/index.php/products'</msg>
+<status status="PASS" endtime="20160606 13:54:33.349" starttime="20160606 13:54:29.719"></status>
+</kw>
+<status status="PASS" endtime="20160606 13:54:33.350" starttime="20160606 13:54:29.718"></status>
+</kw>
+<kw name="Click The Product" library="resource">
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4</arg>
+</arguments>
+<msg timestamp="20160606 13:54:33.353" level="INFO">Clicking element 'css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20160606 13:54:52.666" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20160606 13:54:52.666" starttime="20160606 13:54:50.364"></status>
+</kw>
+<msg timestamp="20160606 13:54:52.666" level="FAIL">ValueError: Element locator 'css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4' did not match any elements.</msg>
+<status status="FAIL" endtime="20160606 13:54:52.666" starttime="20160606 13:54:33.352"></status>
+</kw>
+<status status="FAIL" endtime="20160606 13:54:52.666" starttime="20160606 13:54:33.351"></status>
+</kw>
+<status status="FAIL" endtime="20160606 13:54:52.666" critical="yes" starttime="20160606 13:54:29.715">ValueError: Element locator 'css=#asg-view-by-cats &gt; div &gt; ul &gt; li:nth-child(1) &gt; div.description &gt; a &gt; h4' did not match any elements.</status>
+</test>
+<doc>Test Case with Home Page Open and signIn</doc>
+<status status="FAIL" endtime="20160606 13:54:52.687" starttime="20160606 13:43:37.554"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="8">Critical Tests</stat>
+<stat fail="1" pass="8">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="HomeLogin" pass="8">HomeLogin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

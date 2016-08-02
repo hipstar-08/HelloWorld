@@ -1,0 +1,87 @@
+*** Settings ***
+Suite Setup       Check Precondition    sys.version_info >= (2,6)
+Resource          resource.txt
+Test Timeout      15s
+
+*** Test Cases ***
+Run process does not change active process
+    Some process    active
+    ${expected id}=    Get Process Id
+    Run Python Process    1+1
+    ${id}=    Get Process Id
+    Should Be Equal    ${expected id}    ${id}
+
+Killing process
+    ${handle}=    Some process
+    Process Should Be Running
+    Terminate Process    ${handle}    kill=${True}
+    Wait For Process    ${handle}
+    Process Should Be Stopped    ${handle}
+
+Terminating process
+    ${handle}=    Some process
+    Terminate Process    ${handle}
+    Wait For Process    ${handle}
+    Process Should Be Stopped    ${handle}
+
+Pid
+    ${handle}=    Some process
+    ${pid}=    Get Process Id    ${handle}
+    Should Not Be Equal   ${pid}   ${None}
+    Evaluate    os.kill(int(${pid}),signal.SIGTERM) if hasattr(os, 'kill') else os.system('taskkill /pid ${pid} /f')    os,signal
+    Wait For Process    ${handle}
+    Process Should Be Stopped    ${handle}
+
+Terminate All Processes
+    ${h1}=    Some process
+    ${h2}=    Some process
+    ${h3}=    Some process
+    ${h4}=    Some process
+    ${h5}=    Some process
+    Sleep    0.1
+    ${p1}=    Get Process Object    ${h1}
+    ${p2}=    Get Process Object    ${h2}
+    ${p3}=    Get Process Object    ${h3}
+    ${p4}=    Get Process Object    ${h4}
+    ${p5}=    Get Process Object    ${h5}
+    :FOR    ${process}    IN    ${p1}    ${p2}    ${p3}    ${p4}    ${p5}
+    \    ${poll}=    Call Method    ${process}    poll
+    \    Should Be Equal    ${poll}    ${NONE}
+    Switch Process    ${h3}
+    Terminate Process    ${h2}
+    Terminate All Processes
+    Sleep    0.1
+    :FOR    ${process}    IN    ${p1}    ${p2}    ${p3}    ${p4}    ${p5}
+    \    ${poll}=    Call Method    ${process}    poll
+    \    Should Not Be Equal    ${poll}    ${NONE}
+
+Terminate All Empties Cache
+    Some process
+    Terminate All Processes
+    ${handle} =    Some Process
+    Should Be Equal    ${handle}    ${1}
+
+Kill Process Which Does Not Exist
+    ${handle}=    Some process
+    Terminate Process    ${handle}    kill=${True}
+    Terminate Process    ${handle}    kill=${True}
+
+Wait For Process Which Does Not Exist
+    ${handle}=    Some process
+    Terminate Process    ${handle}    kill=${True}
+    Wait For Process    ${handle}
+
+Lot of output
+    [Tags]    performance
+    ${stdout}=    Normalize Path    %{TEMPDIR}/stdout.txt
+    ${handle}=    Run Process    python -c "for i in range(350000): \tprint 'a'*400"    shell=True    stdout=${stdout}    stderr=STDOUT
+    File Should Not Be Empty    ${stdout}
+    [Teardown]    Safe Remove File    ${stdout}
+
+Getting PIDs in different ways should give same result
+    ${handle}=    Start Process    python -c "print 'hello'"    shell=True    alias=hello
+    ${pid1}=      Get Process Id
+    ${pid2}=      Get Process Id   hello
+    ${pid3}=      Get Process Id   ${handle}
+    Should Be Equal As Integers   ${pid1}   ${pid2}
+    Should Be Equal As Integers   ${pid1}   ${pid3}

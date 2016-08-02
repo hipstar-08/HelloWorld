@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160427 13:25:37.267" generator="Robot 3.0 (Python 2.7.11 on win32)">
+<suite source="D:\Python\Python27\APIXPortal\Login\Login.robot" id="s1" name="Login">
+<test id="s1-t1" name="Valid Login">
+<kw name="Open Browser to Home" library="resource">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20160427 13:25:37.478" level="INFO">Opening browser 'Firefox' to base url 'http://localhost/'</msg>
+<status status="PASS" endtime="20160427 13:25:42.128" starttime="20160427 13:25:37.478"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20160427 13:25:42.129" starttime="20160427 13:25:42.128"></status>
+</kw>
+<status status="PASS" endtime="20160427 13:25:42.129" starttime="20160427 13:25:37.478"></status>
+</kw>
+<kw type="teardown" name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20160427 13:42:22.201" starttime="20160427 13:25:42.130"></status>
+</kw>
+<status status="PASS" endtime="20160427 13:42:22.201" critical="yes" starttime="20160427 13:25:37.477"></status>
+</test>
+<doc>A test suite with a single test for valid login.
+
+This test has a workflow that is created using keywords in
+the imported resource file.</doc>
+<status status="PASS" endtime="20160427 13:42:22.209" starttime="20160427 13:25:37.271"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Login" pass="1">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

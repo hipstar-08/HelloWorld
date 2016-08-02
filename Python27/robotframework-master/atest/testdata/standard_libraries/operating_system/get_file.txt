@@ -1,0 +1,86 @@
+*** Settings ***
+Test Setup      Create Base Test Directory
+Suite Teardown  Remove Base Test Directory
+Resource        os_resource.txt
+Variables       files/result.py
+
+*** Variables ***
+${utf-8file}  ${CURDIR}${/}files${/}utf-8.txt
+${asciifile}  ${CURDIR}${/}files${/}ascii.txt
+${latin-1file}  ${CURDIR}${/}files${/}latin-1.txt
+
+*** Test Cases ***
+Get File
+    Create File  ${TESTFILE}  hello world\nwith two lines
+    ${file} =  Get File  ${TESTFILE}
+    Should Be Equal  ${file}  hello world\nwith two lines
+    ${file} =  Get File  ${TESTFILE}  ascii
+    Should Be Equal  ${file}  hello world\nwith two lines
+
+Get File With Non-ASCII Name
+    Create File  ${NON ASCII}  content
+    ${file} =  Get File  ${NON ASCII}
+    Should Be Equal  ${file}  content
+
+Get File With Space In Name
+    Create File  ${WITH SPACE}  content
+    ${file} =  Get File  ${WITH SPACE}
+    Should Be Equal  ${file}  content
+
+Get Binary File
+    Create File  ${TESTFILE}  hello world\r\nbinary
+    ${file}=  Get Binary File  ${TESTFILE}
+    Should Be Equal  ${file}  hello world\r\nbinary
+
+Log File
+    Create File  ${TESTFILE}  hello world\nwith two lines
+    ${file} =  Log File  ${TESTFILE}
+    Should Be Equal  ${file}  hello world\nwith two lines
+
+Get Utf-8 File
+    ${file} =  Get File  ${utf-8file}
+    Log Variables
+    Log  ${file}
+    Should Be Equal  ${file}  ${RESULT}
+
+Get Ascii File With Default Encoding
+    ${file} =  Get File  ${asciifile}
+    Should Be Equal  ${file}  Hyvaa yota
+
+Get Latin-1 With Default Encoding
+    [Documentation]  FAIL REGEXP: (UnicodeDecodeError|UnicodeError): .*
+    ${file} =  Get File  ${latin-1file}
+
+Get Latin-1 With Latin-1 Encoding
+    ${file} =  Get File  ${latin-1file}  Latin-1
+    Should Be Equal  ${file}  ${result}
+
+Log Latin-1 With Latin-1 Encoding
+    ${file} =  Log File  ${latin-1file}  Latin-1
+
+Grep File
+    Create File  ${TESTFILE}  foo\nbar\nfoo bar\n\nA Foo
+    Grep And Check File  ${EMPTY}  foo\nbar\nfoo bar\n\nA Foo
+    Grep And Check File  foo  foo\nfoo bar
+    Grep And Check File  foo?  foo bar
+    Grep And Check File  ?foo  ${EMPTY}
+    Grep And Check File  ?oo  foo\nfoo bar\nA Foo
+    Grep And Check File  [Ff]oo  foo\nfoo bar\nA Foo
+    Grep And Check File  f*a  foo bar
+    Grep And Check File  ?  foo\nbar\nfoo bar\nA Foo
+    Grep And Check File  ????  foo bar\nA Foo
+    Grep And Check File  foo bar  foo bar
+    Create File  ${TESTFILE}  ${EMPTY}
+    Grep And Check File  *  ${EMPTY}
+
+*** Keywords ***
+Get And Check File
+    [Arguments]  ${path}  ${expected}
+    ${content} =  Get File  ${path}
+    Should Be Equal  ${content}  ${expected}
+
+Grep And Check File
+    [Arguments]  ${pattern}  ${expected}
+    ${content} =  Grep File  ${TESTFILE}  ${pattern}
+    Should Be Equal  ${content}  ${expected}
+

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test name="root">
+    <child>child 1 text</child>
+    <child id="2">
+        child 2 text
+        <grandchild>grand child text</grandchild>
+        more text
+    </child>
+    <child id="3" a2="xxx" a3="y"><grandchild><ggc/></grandchild></child>
+    <another attr="value">
+        <child>text</child>
+    </another>
+</test>

@@ -1,0 +1,49 @@
+Time format
+-----------
+
+Robot Framework has its own time format that is used by several
+keywords (for example :name:`Sleep` and :name:`Wait Until Keyword
+Succeeds`) as well as `test case`__ and `user keyword timeouts`_. This
+format is meant to be both flexible to use and easy to understand.
+
+__ `test case timeouts`_
+
+
+Time as number
+~~~~~~~~~~~~~~
+
+The time can always be given as a plain number, in which case it is
+interpreted to be seconds. Both integers and floating point numbers
+work, and it is possible to use either real numbers or strings
+containing numerical values. This format is useful, for example, when
+the actual time value is calculated.
+
+
+Time as text
+~~~~~~~~~~~~
+
+Representing the time as text means using a format such as :code:`2 minutes
+42 seconds`, which is normally easier to understand than just having
+the value as seconds. It is, for example, not so easy to understand
+how long a time :code:`4200` is in seconds, but :code:`1 hour 10
+minutes` is clear immediately.
+
+The basic idea of this format is having first a number and then a text
+specifying what time that number represents. Numbers can be either
+integers or floating point numbers, the whole format is case and space
+insensitive, and the available specifier texts are:
+
+* days, day, d
+* hours, hour, h
+* minutes, minute, mins, min, m
+* seconds, second, secs, sec, s
+* milliseconds, millisecond, millis, ms
+
+Examples::
+
+   1 min 30 secs
+   1.5 minutes
+   90 s
+   1 day 2 hours 3 minutes 4 seconds 5 milliseconds
+   1d 2h 3m 4s 5ms
+   

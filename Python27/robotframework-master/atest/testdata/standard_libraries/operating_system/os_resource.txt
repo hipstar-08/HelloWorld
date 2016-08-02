@@ -1,0 +1,35 @@
+*** Settings ***
+Library         OperatingSystem
+Library         Collections
+
+*** Variables ***
+${BASE}          %{TEMPDIR}${/}robot-os-tests
+${TESTFILE}      ${BASE}${/}f1.txt
+${TESTFILE 2}    ${BASE}${/}f2.txt
+${TESTDIR}       ${BASE}${/}d1
+${NON ASCII}     ${BASE}${/}nön-äscïï
+${WITH SPACE}    ${BASE}${/}with space
+${ANYDIR}        .*[/\\\\]
+
+*** Keywords ***
+Create And Verify File
+    [Arguments]  ${content}=content  ${encoding}=UTF-8  ${file}=${TESTFILE}
+    Create File  ${file}  ${content}  ${encoding}
+    Verify File  ${file}  ${content}  ${encoding}
+
+Verify File
+    [Arguments]  ${path}  ${expected}  ${encoding}=UTF-8
+    ${content} =  Log File  ${path}  ${encoding}
+    Should Be Equal  ${content}  ${expected}
+
+Create Base Test Directory
+    Remove Base Test Directory
+    Create Directory  ${BASE}
+
+Remove Base Test Directory
+    Remove Directory  ${BASE}  recursive
+
+Directory Should Have Items
+    [Arguments]  ${path}  @{expected}
+    ${items} =  List Directory  ${path}
+    Lists Should Be Equal  ${items}  ${expected}

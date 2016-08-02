@@ -1,0 +1,184 @@
+All command line options
+------------------------
+
+This appendix lists all the command line options that are available
+when `executing test cases`__ with :prog:`pybot` or :prog:`jybot`, and when
+`post-processing outputs`_ with :prog:`rebot`.
+
+__ `Starting test execution`_
+
+.. contents::
+   :depth: 2
+   :local:
+
+Command line options for test execution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  -N, --name <name>       `Sets the name`_ of the top-level test suite.
+  -D, --doc <document>    `Sets the documentation`_ of the top-level test suite.
+  -M, --metadata <name:value>  `Sets free metadata`_ for the top level test suite.
+  -G, --settag <tag>      `Sets the tag(s)`_ to all executed test cases.
+  -t, --test <name>       `Selects the test cases by name`_.
+  -s, --suite <name>      `Selects the test suites`_ by name.
+  -R, --runfailed <file>  `Selects failed tests`_ from an earlier `output file`_ to be re-executed.
+  -i, --include <tag>     `Selects the test cases`_ by tag.
+  -e, --exclude <tag>     `Selects the test cases`_ by tag.
+  -c, --critical <tag>    Tests that have the given tag are `considered critical`_.
+  -n, --noncritical <tag>  Tests that have the given tag are `not critical`_.
+  -v, --variable <name:value>   Sets `individual variables`_.
+  -V, --variablefile <path:args>  Sets variables using `variable files`_.
+  -d, --outputdir <dir>   Defines where to `create output files`_.
+  -o, --output <file>     Sets the path to the generated `output file`_.
+  -l, --log <file>        Sets the path to the generated `log file`_.
+  -r, --report <file>     Sets the path to the generated `report file`_.
+  -x, --xunit <file>      Sets the path to the generated `xUnit compatible result file`_.
+  --xunitfile <file>      Deprecated. Use :opt:`--xunit` instead.
+  --xunitskipnoncritical  Mark non-critical tests on `xUnit compatible result file`_ as skipped.
+  -b, --debugfile <file>  A `debug file`_ that is written during execution.
+  -T, --timestampoutputs  `Adds a timestamp`_ to all output files.
+  --splitlog              `Split log file`_ into smaller pieces that open in
+                          browser transparently.
+  --logtitle <title>      `Sets a title`_ for the generated test log.
+  --reporttitle <title>   `Sets a title`_ for the generated test report.
+  --reportbackground <colors>  `Sets background colors`_ of the generated report.
+  -L, --loglevel <level>  `Sets the threshold level`_ for logging. Optionally
+                          the default `visible log level`_ can be given
+                          separated with a colon (:).
+  --suitestatlevel <level>  Defines how many `levels to show`_ in the
+                           :name:`Statistics by Suite` table in outputs.
+  --tagstatinclude <tag>  `Includes only these tags`_ in the :name:`Statistics
+                          by Tag` table.
+  --tagstatexclude <tag>  `Excludes these tags`_ from the :name:`Statistics
+                          by Tag` table.
+  --tagstatcombine <tags:title>  Creates `combined statistics based on tags`_.
+  --tagdoc <pattern:doc>  Adds `documentation to the specified tags`_.
+  --tagstatlink <pattern:link:title>  Adds `external links`_ to the :name:`Statistics by
+                          Tag` table.
+  --removekeywords <all|passed|name:pattern|for|wuks|none>  `Removes keyword data`_ from the
+                          generated log file.
+  --listener <name:args>  `Sets a listener`_ for monitoring test execution.
+  --warnonskippedfiles    Show a warning when `an invalid file is skipped`_.
+  --nostatusrc            Sets the `return code`_ to zero regardless of failures
+                          in test cases. Error codes are returned normally.
+  --runemptysuite         Executes tests also if the selected `test suites are empty`_.
+  --dryrun                In the `dry run`_ mode tests are run without executing
+                          keywords originating from test libraries. Useful for
+                          validating test data syntax.
+  --exitonfailure         `Stops execution`_ immediately if a critical test fails.
+  --skipteardownonexit    `Skips teardowns`_ is test execution is prematurely stopped.
+  --randomize <all|suites|tests|none>  `Randomizes`_ test execution order.
+  --runmode <mode>        Deprecated in Robot Framework 2.8. Use separate
+                          :opt:`--dryrun`, :opt:`--exitonfailure`,
+                          :opt:`--skipteardownonexit` and :opt:`--randomize`
+                          options instead.
+  -W, --monitorwidth <chars>  `Sets the width`_ of the console output.
+  -C, --monitorcolors <on|off|force>  `Specifies are colors`_ used on the console.
+  -K, --monitormarkers <on|off|force>  Specifies are `console markers`_
+                          (:cli:`.` and :cli:`F`) used.
+  -P, --pythonpath <path>   Additional locations where to `search test libraries`_ from when they are imported.
+  -E, --escape <what:with>   `Escapes characters`_ that are problematic in the console.
+  -A, --argumentfile <path>   A text file to `read more arguments`_ from.
+  -h, --help              Prints `usage instructions`_.
+  --version               Prints the `version information`_.
+
+Command line options for post-processing outputs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  -N, --name <name>       `Sets the name`_ of the top level test suite.
+  -D, --doc <document>    `Sets the documentation`_ of the top-level test suite.
+  -M, --metadata <name:value>  `Sets free metadata`_ for the top-level test suite.
+  -G, --settag <tag>      `Sets the tag(s)`_ to all processed test cases.
+  -t, --test <name>       `Selects the test cases by name`_.
+  -s, --suite <name>      `Selects the test suites`_ by name.
+  -i, --include <tag>     `Selects the test cases`_ by tag.
+  -e, --exclude <tag>     `Selects the test cases`_ by tag.
+  -c, --critical <tag>    Tests that have the given tag are `considered critical`_.
+  -n, --noncritical <tag>  Tests that have the given tag are `not critical`_.
+  -d, --outputdir <dir>   Defines where to `create output files`_.
+  -o, --output <file>     Sets the path to the generated `output file`_.
+  -l, --log <file>        Sets the path to the generated `log file`_.
+  -r, --report <file>     Sets the path to the generated `report file`_.
+  -x, --xunit <file>      Sets the path to the generated `xUnit compatible result file`_.
+  --xunitfile <file>      Deprecated. Use :opt:`--xunit` instead.
+  --xunitskipnoncritical  Mark non-critical tests on `xUnit compatible result file`_ as skipped.
+  -T, --timestampoutputs  `Adds a timestamp`_ to all output files.
+  --splitlog              `Split log file`_ into smaller pieces that open in
+                          browser transparently.
+  --logtitle <title>      `Sets a title`_ for the generated test log.
+  --reporttitle <title>   `Sets a title`_ for the generated test report.
+  --reportbackground <colors>  `Sets background colors`_ of the generated report.
+  -L, --loglevel <level>  `Sets the threshold level`_ to select log messages.
+                          Optionally the default `visible log level`_ can be given
+                          separated with a colon (:).
+  --suitestatlevel <level>  Defines how many `levels to show`_ in the
+                           :name:`Statistics by Suite` table in outputs.
+  --tagstatinclude <tag>  `Includes only these tags`_ in the :name:`Statistics
+                          by Tag` table.
+  --tagstatexclude <tag>  `Excludes these tags`_ from the :name:`Statistics
+                          by Tag` table.
+  --tagstatcombine <tags:title>  Creates `combined statistics based on tags`_.
+  --tagdoc <pattern:doc>  Adds `documentation to the specified tags`_.
+  --tagstatlink <pattern:link:title>  Adds `external links`_ to the :name:`Statistics by
+                          Tag` table.
+  --removekeywords <all|passed|for|wuks|none>  `Removes keyword data`_ from the generated outputs.
+  --starttime <timestamp>  Sets the `starting time`_ of test execution when creating
+                          reports.
+  --endtime <timestamp>   Sets the `ending time`_ of test execution when creating reports.
+  --nostatusrc            Sets the `return code`_ to zero regardless of failures
+                          in test cases. Error codes are returned normally.
+  --processemptysuite     Processes output files even if files contain
+                          `empty test suites`_.
+  -E, --escape <what:with>  `Escapes characters`_ that are problematic in the console.
+  -A, --argumentfile <path>   A text file to `read more arguments`_ from.
+  -h, --help              Prints `usage instructions`_.
+  --version               Prints the `version information`_.
+
+
+.. _Sets the name: `Setting the name`_
+.. _Sets the documentation: `Setting the documentation`_
+.. _Sets free metadata: `Setting free metadata`_
+.. _Sets the tag(s): `Setting tags`_
+.. _Selects the test cases by name: `By test suite and test case names`_
+.. _Selects the test suites: `Selects the test cases by name`_
+.. _Selects failed tests: `Re-executing failed test cases`_
+.. _Selects the test cases: `By tag names`_
+.. _considered critical: `Setting criticality`_
+.. _not critical: `considered critical`_
+.. _ContinueOnFailure: `Continue on failure`_
+.. _Stops execution: `Stopping when first test case fails`_
+.. _Skips teardowns: `Handling Teardowns`_
+.. _SkipTeardownOnExit: `Handling Teardowns`_
+.. _DryRun: `Dry run`_
+.. _Randomizes: `Randomizing execution order`_
+.. _individual variables: `Setting variables in command line`_
+
+.. _create output files: `Output directory`_
+.. _Adds a timestamp: `Timestamping output files`_
+.. _Split log file: `Splitting logs`_
+.. _Sets a title: `Setting titles`_
+.. _Sets background colors: `Setting background colors`_
+
+.. _Sets the threshold level: `Setting log level`_
+.. _levels to show: `Configuring displayed suite statistics`_
+.. _Includes only these tags: `Including and excluding tag statistics`_
+.. _Excludes these tags: `Includes only these tags`_
+.. _combined statistics based on tags: `Generating combined tag statistics`_
+.. _documentation to the specified tags: `Adding documentation to tags`_
+.. _external links: `Creating links from tag names`_
+
+.. _Sets a listener: `Setting listeners`_
+.. _an invalid file is skipped: `Warning on invalid files`_
+.. _test suites are empty: `When no tests match selection`_
+.. _empty test suites: `test suites are empty`_
+.. _Sets the width: `Console width`_
+.. _Specifies are colors: `Console colors`_
+.. _search test libraries: `library search path`_
+.. _Escapes characters: `Escaping complicated characters`_
+.. _read more arguments: `Argument files`_
+.. _usage instructions: `Getting help and version information`_
+.. _version information: `usage instructions`_
+
+.. _Removes keyword data: `Removing keywords from outputs`_
+.. _starting time: `Setting start and end time of execution`_
+.. _ending time: `starting time`_
+

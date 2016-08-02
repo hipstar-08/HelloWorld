@@ -1,0 +1,573 @@
+Basic usage
+-----------
+
+Robot Framework test cases are executed from the command line, and the
+end result is, by default, an `output file`_ in XML format and an HTML
+report_ and log_. After the execution, output files can be combined and
+otherwise `post-processed`__ with the :prog:`rebot` tool.
+
+__ `Post-processing outputs`_
+
+.. contents::
+   :depth: 2
+   :local:
+
+Starting test execution
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Synopsis
+''''''''
+
+::
+
+    pybot|jybot|ipybot [options] data_sources
+    python|jython|ipy -m robot.run [options] data_sources
+    python|jython|ipy path/to/robot/run.py [options] data_sources
+    java -jar robotframework.jar [options] data_sources
+
+Test execution is normally started using :prog:`pybot`, :prog:`jybot`
+or :prog:`ipybot` `runner script`_. These scripts are otherwise identical, but
+the first one executes tests using Python_, the second using Jython_, and the
+last one using IronPython_. Alternatively it is possible to use
+:prog:`robot.run` `entry point`_ either as a module or a script using
+any interpreter, or use the `standalone JAR distribution`_.
+
+Regardless of execution approach, the path (or paths) to the test data to be
+executed is given as an argument after the command. Additionally, different
+command line options can be used to alter the test execution or generated
+outputs in some way.
+
+Specifying test data to be executed
+'''''''''''''''''''''''''''''''''''
+
+Robot Framework test cases are created in files__ and directories__,
+and they are executed by giving the path to the file or directory in
+question to the selected runner script. The path can be absolute or,
+more commonly, relative to the directory where tests are executed
+from. The given file or directory creates the top-level test suite,
+which gets its name, unless overridden with the :opt:`--name` option__,
+from the `file or directory name`__. Different execution possibilities
+are illustrated in the examples below. Note that in these examples, as
+well as in other examples in this section, only the :prog:`pybot` script
+is used, but other execution approaches could be used similarly.
+
+__ `Test case files`_
+__ `Test suite directories`_
+__ `Setting the name`_
+__ `Test suite name and documentation`_
+
+::
+
+   pybot test_cases.html
+   pybot path/to/my_tests/
+   pybot c:\robot\tests.txt
+
+It is also possible to give paths to several test case files or
+directories at once, separated with spaces. In this case, Robot
+Framework creates the top-level test suite automatically, and
+the specified files and directories become its child test suites. The name
+of the created test suite is got from child suite names by
+catenating them together with an ampersand (&) and spaces. For example,
+the name of the top-level suite in the first example below is
+:name:`My Tests & Your Tests`. These automatically created names are
+often quite long and complicated. In most cases, it is thus better to
+use the :opt:`--name` option for overriding it, as in the second
+example below::
+
+   pybot my_tests.html your_tests.html
+   pybot --name Example path/to/tests/pattern_*.html
+
+Using command line options
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Robot Framework provides a number of command line options that can be
+used to control how test cases are executed and what outputs are
+generated. This section explains the option syntax, and what
+options actually exist. How they can be used is discussed elsewhere
+in this chapter.
+
+Using options
+'''''''''''''
+
+When options are used, they must always be given between the runner
+script and the data sources. For example::
+
+   pybot -L debug my_tests.txt
+   pybot --include smoke --variable HOST:10.0.0.42 path/to/tests/
+
+Short and long options
+''''''''''''''''''''''
+
+Options always have a long name, such as :opt:`--name`, and the
+most frequently needed options also have a short name, such as
+:opt:`-N`. In addition to that, long options can be shortened as
+long as they are unique. For example, :cli:`--logle DEBUG` works,
+while :cli:`--lo log.html` does not, because the former matches only
+:opt:`--loglevel`, but the latter matches several options. Short
+and shortened options are practical when executing test cases
+manually, but long options are recommended in `start-up scripts`__,
+because they are easier to understand.
+
+__ `Creating start-up scripts`_
+
+The long option format is case-insensitive, which facilitates writing option
+names in an easy-to-read format. For example, :opt:`--SuiteStatLevel`
+is equivalent to, but easier to read than :opt:`--suitestatlevel`.
+
+Setting option values
+'''''''''''''''''''''
+
+Most of the options require a value, which is given after the option
+name. Both short and long options accept the value separated
+from the option name with a space, as in :cli:`--include tag`
+or :cli:`-i tag`. With long options, the separator can also be the
+equals sign, for example :cli:`--include=tag`, and with short options the
+separator can be omitted, as in :cli:`-itag`.
+
+Some options can be specified several times. For example,
+:cli:`--variable VAR1:value --variable VAR2:another` sets two
+variables. If the options that take only one value are used several
+times, the value given last is effective.
+
+Option value as simple pattern
+''''''''''''''''''''''''''''''
+
+Many of the options take arguments as *simple patterns*. This means
+that :code:`*` and :code:`?` can be used as special characters, so
+that the former matches any string (even an empty string) and the
+latter matches any single character. For example, :cli:`--include
+prefix-\*` matches all tags starting with :code:`prefix-`, and
+:cli:`--include a???` matches any tag that is four characters long and
+starts with a character :code:`a`.
+
+Test results
+~~~~~~~~~~~~
+
+Command line output
+'''''''''''''''''''
+
+The most visible output from test execution is the output displayed in
+the command line. All executed test suites and test cases, as well as
+their statuses, are shown there in real time. The example below shows the
+output from executing a simple test suite with only two test cases::
+
+   ==============================================================================
+   Example test suite
+   ==============================================================================
+   First test :: Possible test documentation                             | PASS |
+   ------------------------------------------------------------------------------
+   Second test                                                           | FAIL |
+   Error message is displayed here
+   ==============================================================================
+   Example test suite                                                    | FAIL |
+   2 critical tests, 1 passed, 1 failed
+   2 tests total, 1 passed, 1 failed
+   ==============================================================================
+   Output:  /path/to/output.xml
+   Report:  /path/to/report.html
+   Log:     /path/to/log.html
+
+Starting from Robot Framework 2.7, there is also a notification on the console
+whenever a top-level keyword in a test case ends. A green dot is used if
+a keyword passes and a red F if it fails. These markers are written to the end
+of line and they are overwritten by the test status when the test itself ends.
+Writing the markers is disabled if console output is redirected to a file.
+
+Generated output files
+''''''''''''''''''''''
+
+The command line output is very limited, and separate output files are
+normally needed for investigating the test results. As the example
+above shows, three output files are generated by default. The first
+one is in XML format and contains all the information about test
+execution. The second is a higher-level report and the third is a more
+detailed log file. These files and other possible output files are
+discussed in more detail in the section `Different output files`_.
+
+Return codes
+''''''''''''
+
+Runner scripts communicate the overall test execution status to the
+system running them using return codes. When the execution starts
+successfully and no `critical test`_ fail, the return code is zero.
+All possible return codes are explained in the table below.
+
+.. table:: Possible return codes
+   :class: tabular
+
+   ========  ==========================================
+      RC                    Explanation
+   ========  ==========================================
+   0         All critical tests passed.
+   1-249     Returned number of critical tests failed.
+   250       250 or more critical failures.
+   251       Help or version information printed.
+   252       Invalid test data or command line options.
+   253       Test execution stopped by user.
+   255       Unexpected internal error.
+   ========  ==========================================
+
+Return codes should always be easily available after the execution,
+which makes it easy to automatically determine the overall execution
+status. For example, in bash shell the return code is in special
+variable :code:`$?`, and in Windows it is in :code:`%ERRORLEVEL%`
+variable. If you use some external tool for running tests, consult its
+documentation for how to get the return code.
+
+Starting from Robot Framework 2.5.7, the return code can be set to 0 even if
+there are critical failures using the :opt:`--NoStatusRC` command line option.
+This might be useful, for example, in continuous integration servers where
+post-processing of results is needed before the overall status of test
+execution can be determined.
+
+.. note:: Same return codes are also used with rebot_.
+
+Errors and warnings during execution
+''''''''''''''''''''''''''''''''''''
+
+During the test execution there can be unexpected problems like
+failing to import a library or a resource file or a keyword being
+deprecated__. Depending on the severity such problems are categorized
+as errors or warnings and they are written into the console (using the
+standard error stream), shown on a separate *Test Execution Errors*
+section in log files, and also written into Robot Framework's own
+`system log`_. Normally these errors are generated by Robot Framework
+core, but libraries can use `log level WARN`__ to write warnings.
+Example below illustrates how errors and warnings look like in the log
+file.
+
+.. raw:: html
+
+   <table class="messages">
+     <tr>
+       <td class="time">20090322&nbsp;19:58:42.528</td>
+       <td class="error level">ERROR</td>
+       <td class="msg">Error in file '/home/robot/tests.html' in table 'Setting' in element on row 2: Resource file 'resource.html' does not exist</td>
+     </tr>
+     <tr>
+       <td class="time">20090322&nbsp;19:58:43.931</td>
+       <td class="warn level">WARN</td>
+       <td class="msg">Keyword 'SomeLibrary.Example Keyword' is deprecated. Use keyword `Other Keyword` instead.</td>
+     </tr>
+   </table>
+
+__ `Deprecating keywords`_
+__ `Logging information`_
+
+Escaping complicated characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because spaces are used for separating options from each other, it is
+problematic to use them in option values.  Some options, such as
+:opt:`--name`, automatically convert underscores to spaces, but
+with others spaces must be escaped. Additionally, many special
+characters are complicated to use on the command line.
+Because escaping complicated characters with a backslash or quoting
+the values does not always work too well, Robot Framework has its own
+generic escaping mechanism. Another possibility is using `argument
+files`_ where options can be specified in the plain text format. Both of
+these mechanisms work when executing tests and when
+post-processing outputs, and also some of the external supporting
+tools have the same or similar capabilities.
+
+In Robot Framework's command line escaping mechanism,
+problematic characters are escaped with freely selected text. The
+command line option to use is :opt:`--escape` (short version
+:opt:`-E`), which takes an argument in the format :opt:`what:with`,
+where :opt:`what` is the name of the character to escape and
+:opt:`with` is the string to escape it with. Characters that can
+be escaped are listed in the table below:
+
+.. table:: Available escapes
+   :class: tabular
+
+   =========  =============  =========  =============
+   Character   Name to use   Character   Name to use
+   =========  =============  =========  =============
+   &          amp            (          paren1
+   '          apos           )          paren2
+   @          at             %          percent
+   \\         blash          \|         pipe
+   :          colon          ?          quest
+   ,          comma          "          quot
+   {          curly1         ;          semic
+   }          curly2         /          slash
+   $          dollar         \          space
+   !          exclam         [          square1
+   >          gt             ]          square2
+   #          hash           \*         star
+   <          lt             \          \
+   =========  =============  =========  =============
+
+The following examples make the syntax more clear. In the
+first example, the metadata :opt:`X` gets the value :code:`Value with
+spaces`, and in the second example variable :var:`${VAR}` is assigned to
+:code:`"Hello, world!"`::
+
+    --escape space:_ --metadata X:Value_with_spaces
+    -E space:SP -E quot:QU -E comma:CO -E exclam:EX -v VAR:QUHelloCOSPworldEXQU
+
+Note that all the given command line arguments, including paths to test
+data, are escaped. Escape character sequences thus need to be
+selected carefully.
+
+Argument files
+~~~~~~~~~~~~~~
+
+Argument files allow placing all or some command line options and arguments
+into an external file where they will be read. This avoids the problems with
+characters that are problematic on the command line. If lot of options or
+arguments are needed, argument files also prevent the command that is used on
+the command line growing too long.
+
+Argument files are taken into use with :opt:`--argumentfile` option
+(short option :opt:`-A`) along with possible other command line options.
+
+Argument file syntax
+''''''''''''''''''''
+
+Argument files can contain both command line options and paths to the test data,
+one option or data source per line. Both short and long options are supported,
+but the latter are recommended because they are easier to understand.
+Argument files can contain any characters without escaping, but spaces in
+the beginning and end of lines are ignored. Additionally, empty lines and
+lines starting with a hash mark (#) are ignored::
+
+   --doc This is an example (where "special characters" are ok!)
+   --metadata X:Value with spaces
+   --variable VAR:Hello, world!
+   # This is a comment
+   path/to/my/tests
+
+In the above example the separator between options and their values is a single
+space. In Robot Framework 2.7.6 and newer it is possible to use either an equal
+sign (=) or any number of spaces. As an example, the following three lines are
+identical::
+
+    --name An Example
+    --name=An Example
+    --name       An Example
+
+If argument files contain non-ASCII characters, they must be saved using
+UTF-8 encoding.
+
+Using argument files
+''''''''''''''''''''
+
+Argument files can be used either alone so that they contain all the options
+and paths to the test data, or along with other options and paths. When
+an argument file is used with other arguments, its contents are placed into
+the original list of arguments to the same place where the argument file
+option was. This means that options in argument files can override options
+before it, and its options can be overridden by options after it. It is possible
+to use :opt:`--argumentfile` option multiple times or even recursively::
+
+   pybot --argumentfile all_arguments.txt
+   pybot --name Example --argumentfile other_options_and_paths.txt
+   pybot --argumentfile default_options.txt --name Example my_tests.html
+   pybot -A first.txt -A second.txt -A third.txt tests.txt
+
+
+Reading argument files from standard input
+''''''''''''''''''''''''''''''''''''''''''
+
+Starting from Robot Framework 2.5.6, special argument file name :opt:`STDIN`
+can be used to read arguments from the standard input stream instead of a file.
+This can be useful when generating arguments with a script::
+
+   generate_arguments.sh | pybot --argumentfile STDIN
+   generate_arguments.sh | pybot --name Example --argumentfile STDIN tests.txt
+
+
+Getting help and version information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both when executing test cases and when post-processing outputs, it is possible
+to get command line help with the option :opt:`--help` and its short version
+:opt:`-h`. These help texts have a short general overview and
+briefly explain the available command line options.
+
+All runner scripts also support getting the version information with
+the option :opt:`--version`. This information also contains Python
+or Jython version and the platform type::
+
+   $ pybot --version
+   Robot Framework 2.7 (Python 2.6.6 on linux2)
+
+   $ jybot --version
+   Robot Framework 2.7 (Jython 2.5.2 on java1.6.0_21)
+
+   C:\>rebot --version
+   Rebot 2.7 (Python 2.7.1 on win32)
+
+
+Creating start-up scripts
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Test cases are often executed automatically by a continuous
+integration system or some other mechanism. In such cases, there is a
+need to have a script for starting the test execution, and possibly
+also for post-processing outputs somehow. Similar scripts are also
+useful when running tests manually, especially if a large number of
+command line options are needed or setting up the test environment is
+complicated.
+
+In UNIX-like environments, shell scripts provide a simple but powerful
+mechanism for creating custom start-up scripts. Windows batch files
+can also be used, but they are more limited and often also more
+complicated. A platform-independent alternative is using Python or
+some other high-level programming language. Regardless of the
+language, it is recommended that long option names are used, because
+they are easier to understand than the short names.
+
+In the first examples, the same web tests are executed with different
+browsers and the results combined afterwards. This is easy with shell
+scripts, as practically you just list the needed commands one after
+another:
+
+.. sourcecode:: bash
+
+   #!/bin/bash
+   pybot --variable BROWSER:Firefox --name Firefox --log none --report none --output out/fx.xml login
+   pybot --variable BROWSER:IE --name IE --log none --report none --output out/ie.xml login
+   rebot --name Login --outputdir out --output login.xml out/fx.xml out/ie.xml
+
+Implementing the above example with Windows batch files is not very
+complicated, either. The most important thing to remember is that
+because :prog:`pybot` and :prog:`rebot` are implemented as batch
+files, :prog:`call` must be used when running them from another batch
+file. Otherwise execution would end when the first batch file is
+finished.
+
+.. sourcecode:: bat
+
+   @echo off
+   call pybot --variable BROWSER:Firefox --name Firefox --log none --report none --output out\fx.xml login
+   call pybot --variable BROWSER:IE --name IE --log none --report none --output out\ie.xml login
+   call rebot --name Login --outputdir out --output login.xml out\fx.xml out\ie.xml
+
+In the next examples, JAR files under the :path:`lib` directory are
+put into CLASSPATH before starting the test execution. In these
+examples, start-up scripts require that paths to the executed test
+data are given as arguments. It is also possible to use command line
+options freely, even though some options have already been set in the
+script. All this is relatively straight-forward using bash:
+
+.. sourcecode:: bash
+
+   #!/bin/bash
+
+   cp=.
+   for jar in lib/*.jar; do
+       cp=$cp:$jar
+   done
+   export CLASSPATH=$cp
+
+   jybot --ouputdir /tmp/logs --suitestatlevel 2 $*
+
+Implementing this using Windows batch files is slightly more complicated. The
+difficult part is setting the variable containing the needed JARs inside a For
+loop, because, for some reason, that is not possible without a helper
+function.
+
+.. sourcecode:: bat
+
+   @echo off
+
+   set CP=.
+   for %%jar in (lib\*.jar) do (
+       call :set_cp %%jar
+   )
+   set CLASSPATH=%CP%
+
+   jybot --ouputdir c:\temp\logs --suitestatlevel 2 %*
+
+   goto :eof
+
+   :: Helper for setting variables inside a for loop
+   :set_cp
+       set CP=%CP%;%1
+   goto :eof
+
+Modifying Java startup parameters
+'''''''''''''''''''''''''''''''''
+
+Sometimes when using Jython there is need to alter the Java startup parameters.
+The most common use case is increasing the JVM maximum memory size as the
+default value may not be enough for creating reports and logs when
+outputs are very big. There are several ways to configure JVM options:
+
+1. Modify Jython start-up script (:prog:`jython` shell script or
+   :prog:`jython.bat` batch file) directly. This is a permanent configuration.
+
+2. Set :var:`JYTHON_OPTS` environment variable. This can be done permanently
+   in operating system level or per execution in a custom start-up script.
+
+3. Pass the needed Java parameters wit :opt:`-J` option to Jython start-up
+   script that will pass them forward to Java. This is especially easy when
+   using `direct entry points`_::
+
+      jython -J-Xmx1024m -m robot.run some_tests.txt
+
+Debugging problems
+~~~~~~~~~~~~~~~~~~
+
+A test case can fail because the system under test does not work
+correctly, in which case the test has found a bug, or because the test
+itself is buggy. The error message explaining the failure is shown on
+the `command line output`_ and in the `report file`_, and sometimes
+the error message alone is enough to pinpoint the problem. More often
+that not, however, `log files`_ are needed because they have also
+other log messages and they show which keyword actually failed.
+
+When a failure is caused by the tested application, the error message
+and log messages ought to be enough to understand what caused it. If
+that is not the case, the test library does not provide `enough
+information`__ and needs to be enhanced. In this situation running the
+same test manually, if possible, may also reveal more information
+about the issue.
+
+Failures caused by test cases themselves or by keywords they use can
+sometimes be hard to debug. If the error message, for example, tells
+that a keyword is used with wrong number of arguments fixing the
+problem is obviously easy, but if a keyword is missing or fails in
+unexpected way finding the root cause can be harder. The first place
+to look for more information is the `execution errors`_ section in
+the log file. For example, an error about a failed test library import
+may well explain why a test has failed due to a missing keyword.
+
+If the log file does not provide enough information by default, it is
+possible to execute tests with a lower `log level`_. For example
+tracebacks showing where in the code the failure occurred are logged
+using the :msg:`DEBUG` level, and this information is invaluable when
+the problem is in an individual keyword.
+
+If the log file still does not have enough information, it is a good
+idea to enable the syslog_ and see what information it provides. It is
+also possible to add some keywords to the test cases to see what is
+going on. Especially BuiltIn_ keywords :name:`Log` and :name:`Log
+Variables` are useful. If nothing else works, it is always possible to
+search help from `mailing lists`_ or elsewhere.
+
+__ `Communicating with Robot Framework`_
+
+Using the Python debugger (pdb)
+'''''''''''''''''''''''''''''''
+
+It is also possible to use the pdb__ module from the Python standard
+library to set a break point and interactively debug a running test.
+The typical way of invoking pdb by inserting
+
+.. sourcecode:: python
+
+   import pdb; pdb.set_trace()
+
+at the location you want to break into debugger will not work correctly
+with Robot Framework, though, as the standard output stream is
+redirected during keyword execution. Instead, you can use the following:
+
+.. sourcecode:: python
+
+   import sys, pdb; pdb.Pdb(stdout=sys.__stdout__).set_trace()
+
+__ http://docs.python.org/2/library/pdb.html
